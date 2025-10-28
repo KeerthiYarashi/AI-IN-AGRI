@@ -27,8 +27,11 @@ serve(async (req) => {
 
     const apiKey = Deno.env.get("PLANT_ID_API_KEY");
     if (!apiKey) {
-      console.error("PLANT_ID_API_KEY not configured");
-      return new Response(JSON.stringify({ error: "API key not configured. Please contact support." }), {
+      console.error("PLANT_ID_API_KEY not configured in Supabase");
+      return new Response(JSON.stringify({ 
+        error: "API service temporarily unavailable. Using fallback detection.",
+        fallback: true 
+      }), {
         status: 503,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -77,7 +80,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         error: "Service temporarily unavailable. Please try again later.",
-        details: e instanceof Error ? e.message : "Unknown error" 
+        details: e instanceof Error ? e.message : "Unknown error",
+        fallback: true
       }),
       { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );

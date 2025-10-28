@@ -175,10 +175,8 @@ class PestService {
 
   private async detectWithPlantIdAPI(imageFile: File): Promise<PestDetectionResult> {
     try {
-      // Convert image to base64 (without data URL prefix)
       const base64Image = await this.fileToBase64(imageFile);
 
-      // Call backend function which securely talks to Plant.id
       const { data, error } = await supabase.functions.invoke('plant-health', {
         body: {
           image: base64Image,
@@ -188,12 +186,14 @@ class PestService {
       });
 
       if (error) {
+        console.warn('⚠️ Supabase function error:', error.message);
         throw new Error(error.message || 'Plant health function error');
       }
 
-      // Edge function may return an error object with status 429/402
-      if ((data as any)?.error) {
-        throw new Error((data as any).error);
+      // Handle fallback response from Edge Function
+      if ((data as any)?.fallback || (data as any)?.error) {
+        console.warn('⚠️ API unavailable, using fallback');
+        throw new Error((data as any).error || 'API unavailable');
       }
 
       return this.parsePlantIdResponse(data);
