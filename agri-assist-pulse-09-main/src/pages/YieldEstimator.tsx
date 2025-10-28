@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { BarChart3, Calculator, Trash2, Lightbulb, TrendingUp, TrendingDown, AlertCircle, Award } from 'lucide-react';
+import { BarChart3, Calculator, Trash2, Lightbulb, TrendingUp, TrendingDown, AlertCircle, Award, Leaf } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { activityService } from '@/services/activityService';
 import { useLanguage } from '@/contexts/LanguageContext';

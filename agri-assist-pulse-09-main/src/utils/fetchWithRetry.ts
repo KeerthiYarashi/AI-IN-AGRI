@@ -27,9 +27,9 @@ export async function fetchWithRetry(
 ): Promise<Response> {
   const {
     maxAttempts = 3,
-    timeout = 6000,
+    timeout = 10000, // Increased timeout for Vercel
     backoffMultiplier = 2,
-    initialDelay = 300
+    initialDelay = 500 // Increased initial delay
   } = retryOptions;
 
   // Check circuit breaker
@@ -57,10 +57,30 @@ export async function fetchWithRetry(
 
       const response = await fetch(url, {
         ...options,
-        signal: controller.signal
+        signal: controller.signal,
+        headers: {
+          ...options.headers,
+          'User-Agent': 'AI-Agri-Assistant/1.0',
+        }
       });
 
       clearTimeout(timeoutId);
+
+      // Handle specific Vercel error codes
+      if (response.status === 504) {
+        throw new Error('Gateway timeout - service temporarily unavailable');
+      }
+      if (response.status === 502) {
+        throw new Error('Bad gateway - service configuration error');
+      }
+      if (response.status === 503) {
+        throw new Error('Service unavailable - please try again later');
+      }
+
+      if (!response.ok && response.status < 500) {
+        // Don't retry client errors
+        return response;
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -98,8 +118,7 @@ export async function fetchWithRetry(
         throw lastError;
       }
 
-      // Exponential backoff
-      const delay = initialDelay * Math.pow(backoffMultiplier, attempt - 1);
+      const delay = Math.min(initialDelay * Math.pow(backoffMultiplier, attempt - 1), 5000);
       console.warn(`⚠️ Retry attempt ${attempt}/${maxAttempts} after ${delay}ms`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }

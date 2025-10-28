@@ -1,4 +1,5 @@
 import { CropType, EmissionFactors, CropThreshold, Language } from '@/types';
+import { getEnvVar } from './env';
 
 // Crop types with bilingual support
 export const CROP_TYPES: CropType[] = [
@@ -46,9 +47,15 @@ export const CARBON_THRESHOLDS = {
 
 // API endpoints (with fallbacks)
 export const API_ENDPOINTS = {
-  WEATHER: 'https://api.openweathermap.org/data/2.5',
-  PLANT_ID: 'https://api.plant.id/v3',
-  FORECAST: import.meta.env.VITE_REMOTE_FORECAST_URL || null
+  WEATHER: getEnvVar('VITE_WEATHER_API_URL', 'https://api.openweathermap.org/data/2.5'),
+  PLANT_ID: getEnvVar('VITE_PLANT_ID_API_URL', 'https://api.plant.id/v3'),
+  FORECAST: getEnvVar('VITE_REMOTE_FORECAST_URL', ''),
+};
+
+// API Keys with validation
+export const API_KEYS = {
+  WEATHER: getEnvVar('VITE_OPENWEATHERMAP_KEY', ''),
+  PLANT_ID: getEnvVar('VITE_PLANT_ID_API_KEY', ''),
 };
 
 // Languages

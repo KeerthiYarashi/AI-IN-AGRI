@@ -157,3 +157,19 @@ export interface AuthState {
   loading: boolean;
   error: string | null;
 }
+
+// Add missing PlantIdResponse type
+export interface PlantIdResponse {
+  result: {
+    is_healthy: boolean;
+    disease: {
+      name: string;
+      probability: number;
+      treatment?: {
+        prevention?: string[];
+        chemical?: string[];
+        biological?: string[];
+      };
+    };
+  };
+}

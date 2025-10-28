@@ -3,12 +3,13 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
 serve(async (req) => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { headers: corsHeaders, status: 204 });
   }
 
   try {
@@ -26,8 +27,9 @@ serve(async (req) => {
 
     const apiKey = Deno.env.get("PLANT_ID_API_KEY");
     if (!apiKey) {
-      return new Response(JSON.stringify({ error: "PLANT_ID_API_KEY is not configured" }), {
-        status: 500,
+      console.error("PLANT_ID_API_KEY not configured");
+      return new Response(JSON.stringify({ error: "API key not configured. Please contact support." }), {
+        status: 503,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -73,8 +75,11 @@ serve(async (req) => {
   } catch (e) {
     console.error("plant-health error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ 
+        error: "Service temporarily unavailable. Please try again later.",
+        details: e instanceof Error ? e.message : "Unknown error" 
+      }),
+      { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });
