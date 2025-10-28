@@ -1,0 +1,359 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI Agri Assistant Design System - Agriculture themed colors and gradients
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Agriculture-themed color palette */
+    --background: 120 20% 98%;
+    --foreground: 120 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 120 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 10% 15%;
+
+    /* Green primary theme for agriculture */
+    --primary: 120 45% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 120 65% 35%;
+    --primary-light: 120 40% 85%;
+
+    /* Earth tone secondary */
+    --secondary: 35 25% 92%;
+    --secondary-foreground: 120 45% 25%;
+
+    /* Soft muted tones */
+    --muted: 120 15% 95%;
+    --muted-foreground: 120 8% 45%;
+
+    /* Accent colors for features */
+    --accent: 45 85% 65%;
+    --accent-foreground: 120 10% 15%;
+
+    /* Status colors */
+    --success: 120 60% 40%;
+    --success-foreground: 0 0% 98%;
+    --warning: 45 90% 55%;
+    --warning-foreground: 45 10% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* UI elements */
+    --border: 120 15% 88%;
+    --input: 120 15% 95%;
+    --ring: 120 45% 25%;
+
+    /* Feature-specific colors */
+    --market-color: 200 85% 50%;
+    --pest-color: 15 85% 55%;
+    --irrigation-color: 210 85% 60%;
+    --carbon-color: 280 65% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(120 70% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 20% 98%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+
+    /* Shadows with agriculture theme */
+    --shadow-soft: 0 2px 8px hsl(var(--primary) / 0.08);
+    --shadow-medium: 0 4px 16px hsl(var(--primary) / 0.12);
+    --shadow-strong: 0 8px 32px hsl(var(--primary) / 0.16);
+    --shadow-glow: 0 0 24px hsl(var(--primary-glow) / 0.25);
+
+    /* Animations */
+    --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-glow: 142 71% 55%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 45 85% 65%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142 71% 45%;
+    
+    --market-color: 200 85% 60%;
+    --pest-color: 15 85% 65%;
+    --irrigation-color: 210 85% 70%;
+    --carbon-color: 280 65% 60%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 142 71% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Feature card styles */
+  .feature-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-6 
+           hover:shadow-medium transition-all duration-300
+           hover:scale-[1.02] hover:bg-card;
+  }
+
+  /* Dark mode card improvements */
+  .dark .bg-card\/50 {
+    background-color: hsl(var(--card) / 0.5);
+  }
+
+  .dark .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+
+  /* Status badges */
+  .status-success {
+    @apply bg-success/10 text-success border border-success/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-warning {
+    @apply bg-warning/10 text-warning border border-warning/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-error {
+    @apply bg-destructive/10 text-destructive border border-destructive/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Feature-specific gradients */
+  .market-gradient {
+    background: linear-gradient(135deg, hsl(var(--market-color)) 0%, hsl(var(--market-color)) 100%);
+  }
+
+  .pest-gradient {
+    background: linear-gradient(135deg, hsl(var(--pest-color)) 0%, hsl(var(--pest-color)) 100%);
+  }
+
+  .irrigation-gradient {
+    background: linear-gradient(135deg, hsl(var(--irrigation-color)) 0%, hsl(var(--irrigation-color)) 100%);
+  }
+
+  .carbon-gradient {
+    background: linear-gradient(135deg, hsl(var(--carbon-color)) 0%, hsl(var(--carbon-color)) 100%);
+  }
+
+  /* Loading animations */
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  /* Scan effect */
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary-glow) / 0.3), transparent);
+    animation: scan 2s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Text gradients */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Feature-specific text colors */
+  .text-market-color {
+    color: hsl(var(--market-color));
+  }
+
+  .text-pest-color {
+    color: hsl(var(--pest-color));
+  }
+
+  .text-irrigation-color {
+    color: hsl(var(--irrigation-color));
+  }
+
+  .text-carbon-color {
+    color: hsl(var(--carbon-color));
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fade-in var(--animation-smooth) ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up var(--animation-smooth) ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in var(--animation-bounce) ease-out;
+  }
+}
+
+/* Keyframes */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

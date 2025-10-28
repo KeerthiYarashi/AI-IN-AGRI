@@ -1,0 +1,4 @@
+project_id = "ouhshskvenfmugfiheht"
+
+[functions.plant-health]
+verify_jwt = false

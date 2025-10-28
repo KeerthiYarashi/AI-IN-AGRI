@@ -1,0 +1,84 @@
+{
+  "samples": [
+    {
+      "id": "sample_1",
+      "crop": "tomato",
+      "disease": "leaf_blight",
+      "diseaseName": "Early Blight",
+      "confidence": 0.89,
+      "severity": "medium",
+      "isHealthy": false,
+      "remedies": [
+        "Apply neem oil spray (organic pesticide)",
+        "Remove affected leaves immediately", 
+        "Improve air circulation around plants",
+        "Apply copper-based fungicide"
+      ],
+      "description": "Early blight is a fungal disease that affects tomato plants, causing dark spots on leaves."
+    },
+    {
+      "id": "sample_2", 
+      "crop": "potato",
+      "disease": "late_blight",
+      "diseaseName": "Late Blight",
+      "confidence": 0.92,
+      "severity": "high",
+      "isHealthy": false,
+      "remedies": [
+        "Apply copper-based fungicide immediately",
+        "Remove and destroy affected plants",
+        "Improve drainage and air circulation",
+        "Avoid overhead watering"
+      ],
+      "description": "Late blight is a serious disease that can destroy entire potato crops if not treated quickly."
+    },
+    {
+      "id": "sample_3",
+      "crop": "onion", 
+      "disease": "healthy",
+      "diseaseName": "Healthy Plant",
+      "confidence": 0.95,
+      "severity": "low",
+      "isHealthy": true,
+      "remedies": [
+        "Continue current care practices",
+        "Maintain regular watering schedule",
+        "Monitor for early signs of disease",
+        "Apply organic compost regularly"
+      ],
+      "description": "Your onion plant appears healthy with no signs of disease."
+    },
+    {
+      "id": "sample_4",
+      "crop": "wheat",
+      "disease": "rust",
+      "diseaseName": "Wheat Rust",
+      "confidence": 0.87,
+      "severity": "medium",
+      "isHealthy": false,
+      "remedies": [
+        "Apply sulfur-based fungicide",
+        "Remove infected plant debris",
+        "Plant rust-resistant varieties next season",
+        "Ensure proper plant spacing"
+      ],
+      "description": "Wheat rust appears as orange or reddish pustules on leaves and stems."
+    },
+    {
+      "id": "sample_5",
+      "crop": "tomato",
+      "disease": "powdery_mildew",
+      "diseaseName": "Powdery Mildew",
+      "confidence": 0.91,
+      "severity": "low",
+      "isHealthy": false,
+      "remedies": [
+        "Spray baking soda solution (1 tsp per liter)",
+        "Apply neem oil in early morning",
+        "Ensure proper spacing between plants",
+        "Use organic sulfur spray"
+      ],
+      "description": "Powdery mildew appears as white, powdery spots on leaves and stems."
+    }
+  ]
+}
